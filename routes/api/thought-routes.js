@@ -4,15 +4,15 @@ const { getAllThought, getThoughtById, createThought, updateThought, deleteThoug
 // /api/thoughts
 router.route('/').get(getAllThought).post(createThought);
 
-router.route('/:ThoughtId').get(getThoughtById).put(updateThought).delete(deleteThought);
+router.route('/:id').get(getThoughtById).put(updateThought).delete(deleteThought);
 
 // /api/thoughts/:thoughtId/reactions
 router.route('/:thoughtId/reactions').post(createReaction).delete(deleteReaction);
 
-// // /api/thoughts/<ThoughtId>
-// router.route('/:ThoughtId').post(createReaction);
+// // /api/thoughts/<id>
+// router.route('/:id').post(createReaction);
 
 // // /api/thoughts/<thoughtId>/<reactionId>
-// router.route('/:ThoughtId/:ReactionId').delete(deleteReaction);
+// router.route('/:id/:ReactionId').delete(deleteReaction);
 
 module.exports = router;

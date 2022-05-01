@@ -43,7 +43,7 @@ const thoughtController = {
   createThought({ params, body }, res) {
     Thought.create(body)
       .then(({ _id }) => {
-        return User.findOneAndUpdate({ _id: params.userId }, { $push: { comments: _id } }, { new: true });
+        return User.findOneAndUpdate({ _id: params.userId }, { $push: { thoughts: _id } }, { new: true });
       })
       .then((dbUserData) => {
         console.log(dbUserData);
@@ -72,11 +72,11 @@ const thoughtController = {
   // remove a thought by its _id
   deleteThought({ params }, res) {
     Thought.findOneAndDelete({ _id: params.thoughtId })
-      .then((deletedComment) => {
-        if (!deletedComment) {
+      .then((deletedThought) => {
+        if (!deletedThought) {
           return res.status(404).json({ message: 'No thought with this id!' });
         }
-        return User.findOneAndUpdate({ _id: params.userId }, { $pull: { comments: params.thoughtId } }, { new: true });
+        return User.findOneAndUpdate({ _id: params.userId }, { $pull: { thoughts: params.thoughtId } }, { new: true });
       })
       .then((dbUserData) => {
         if (!dbUserData) {

@@ -1,18 +1,15 @@
 const router = require('express').Router();
-const { 
-  addComment, 
-  removeComment, 
-  addReply, 
-  removeReply 
-} = require('../../controllers/thought-controller');
+const { getAllThought, getThoughtById, addThought, updateThought, deleteThought, addReaction, deleteReaction } = require('../../controllers/thought-controller');
 
-// /api/comments/<pizzaId>
-router.route('/:pizzaId').post(addComment);
+// /api/thoughts
+router.route('/').get(getAllThought).post(addThought);
 
-// /api/comments/<pizzaId>/<commentId>
-router.route('/:pizzaId/:commentId').put(addReply).delete(removeComment);
+router.route('/:ThoughtId').get(getThoughtById).put(updateThought).delete(deleteThought);
 
-// /api/comments/<pizzaId>/<commentId>/<replyId>
-router.route('/:pizzaId/:commentId/:replyId').delete(removeReply);
+// /api/thoughts/<ThoughtId>
+router.route('/:ThoughtId').put(addReaction).delete(deleteThought);
+
+// /api/thoughts/<thoughtId>/<reactionId>
+router.route('/:ThoughtId/:ReactionId').delete(deleteReaction);
 
 module.exports = router;

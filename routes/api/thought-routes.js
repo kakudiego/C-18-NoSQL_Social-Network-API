@@ -6,10 +6,13 @@ router.route('/').get(getAllThought).post(createThought);
 
 router.route('/:ThoughtId').get(getThoughtById).put(updateThought).delete(deleteThought);
 
-// /api/thoughts/<ThoughtId>
-router.route('/:ThoughtId').post(createReaction);
+// /api/thoughts/:thoughtId/reactions
+router.route('/:thoughtId/reactions').post(createReaction).delete(deleteReaction);
 
-// /api/thoughts/<thoughtId>/<reactionId>
-router.route('/:ThoughtId/:ReactionId').delete(deleteReaction);
+// // /api/thoughts/<ThoughtId>
+// router.route('/:ThoughtId').post(createReaction);
+
+// // /api/thoughts/<thoughtId>/<reactionId>
+// router.route('/:ThoughtId/:ReactionId').delete(deleteReaction);
 
 module.exports = router;

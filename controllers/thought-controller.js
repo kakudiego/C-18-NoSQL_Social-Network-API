@@ -32,27 +32,6 @@ const thoughtController = {
       });
   },
 
-  // getThoughtById(req, res) {
-  //   Thought.findOne({ _id: req.params.Id })
-  //     .populate({
-  //       path: 'reactions',
-  //       select: '-__v',
-  //     })
-  //     .select('-__v')
-  //     .sort({ _id: -1 })
-  //     .then((dbThoughtData) => {
-  //       if (!dbThoughtData) {
-  //         res.status(404).json({ message: 'No thought found with this id!' });
-  //         return;
-  //       }
-  //       res.json(dbThoughtData);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       res.sendStatus(400);
-  //     });
-  // },
-
   // create a new thought
   createThought({ body }, res) {
     Thought.create(body)

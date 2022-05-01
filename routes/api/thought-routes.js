@@ -9,10 +9,4 @@ router.route('/:id').get(getThoughtById).put(updateThought).delete(deleteThought
 // /api/thoughts/:thoughtId/reactions
 router.route('/:thoughtId/reactions').post(createReaction).delete(deleteReaction);
 
-// // /api/thoughts/<id>
-// router.route('/:id').post(createReaction);
-
-// // /api/thoughts/<thoughtId>/<reactionId>
-// router.route('/:id/:ReactionId').delete(deleteReaction);
-
 module.exports = router;

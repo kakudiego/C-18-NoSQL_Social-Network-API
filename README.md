@@ -22,6 +22,8 @@
 
 ## Video Demonstration
 
+https://user-images.githubusercontent.com/94471049/166174738-97ec8219-1c8d-4043-8494-d4fc78e39dec.mp4
+
 ## Installation
 
 clone/copy/download repo > npm i > open terminal > run the app > test the routes with Insomnia

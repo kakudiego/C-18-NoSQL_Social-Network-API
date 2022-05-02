@@ -60,9 +60,7 @@ const UserController = {
           res.status(404).json({ message: 'ERROR! try another userID!' });
           return;
         }
-        Thought.deleteMany({ userId: params.id })
-          .then(() => res.json(dbUserData))
-          .catch((err) => res.json(err));
+        Thought.deleteMany({ _id: { $in: dbUserData.thoughts } }).then(() => res.json(dbUserData));
       })
       .catch((err) => res.json(err));
   },

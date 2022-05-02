@@ -44,7 +44,7 @@ const UserController = {
     User.findOneAndUpdate({ _id: params.id }, body, { new: true, runValidators: true })
       .then((dbUserData) => {
         if (!dbUserData) {
-          res.status(404).json({ message: 'No User with this id!' });
+          res.status(404).json({ message: 'ERROR! try another userID!' });
           return;
         }
         res.json(dbUserData);
@@ -64,7 +64,7 @@ const UserController = {
     User.findOneAndUpdate({ _id: params.userId }, { $push: { friends: params.friendId } }, { new: true })
       .then((dbUserData) => {
         if (!dbUserData) {
-          res.status(404).json({ message: 'No user with this ID!' });
+          res.status(404).json({ message: 'ERROR! try another userID!' });
           return;
         }
         res.json(dbUserData);
@@ -77,7 +77,7 @@ const UserController = {
     User.findOneAndUpdate({ _id: params.userId }, { $pull: { friends: params.friendId } }, { new: true })
       .then((dbUserData) => {
         if (!dbUserData) {
-          res.status(404).json({ message: 'No user with that ID!' });
+          res.status(404).json({ message: 'ERROR! try another friendID!' });
           return;
         }
         res.json(dbUserData);

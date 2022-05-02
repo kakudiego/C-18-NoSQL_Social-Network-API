@@ -9,6 +9,7 @@ router.route('/:id').get(getThoughtById).put(updateThought).delete(deleteThought
 // /api/thoughts/:thoughtId/reactions
 router.route('/:thoughtId/reactions').post(createReaction);
 
+// I tried to use the same route ^ for deleteReaction but it didn't work
 // delete Reaction
 router.route('/:thoughtId/reactions/:reactionId').delete(deleteReaction);
 

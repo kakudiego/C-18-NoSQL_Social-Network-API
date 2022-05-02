@@ -16,7 +16,6 @@
 - [Installation](#installation)
 - [Usage](#usage)
 - [License](#license)
-- [Tests](#tests)
 - [Contributors](#contributors)
 - [Contact](#contact)
 
@@ -41,10 +40,6 @@ This application is covered under the MIT license.
 ## Contributors
 
 Contact below
-
-## Tests
-
-To test, run the following command: npm start
 
 ## Contact
 

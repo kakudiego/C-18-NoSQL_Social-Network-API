@@ -1,4 +1,5 @@
 const { User } = require('../models');
+const { remove } = require('../models/User');
 
 const UserController = {
   // get all Users
@@ -53,23 +54,35 @@ const UserController = {
   },
 
   // delete User and all associated thoughts when user is deleted
-  deleteUser({ params }, res) {
-    User.findOneAndDelete({ _id: params.id })
-      .then((dbUserData) => {
-        if (!dbUserData) {
-          res.status(404).json({ message: 'ERROR! try another userID!' });
-          return;
-        }
-        Thought.deleteMany({ _id: { $in: dbUserData.thoughts } }).then(() => res.json(dbUserData));
-      })
-      .catch((err) => res.json(err));
-  },
+  // deleteUser({ params }, res) {
+  //   User.findOneAndDelete({ _id: params.id })
+  //     .then((dbUserData) => {
+  //       if (!dbUserData) {
+  //         res.status(404).json({ message: 'ERROR! try another userID!' });
+  //         return;
+  //       }
+  //       Thought.deleteMany({ _id: { $in: dbUserData.thoughts } }).then(() => res.json(dbUserData));
+  //     })
+  //     .catch((err) => res.json(err));
+  // },
 
   // deleteUser({ params }, res) {
   //   User.findOneAndDelete({ _id: params.id })
-  //     .then((dbUserData) => res.json(dbUserData))
+  //     .then((dbUserData) => {
+  //       if (!dbUserData) {
+  //         res.status(404).json({ message: 'ERROR! try another userID!' });
+  //         return;
+  //       }
+  //       remove(dbUserData.thoughts).then(() => res.json(dbUserData));
+  //     })
   //     .catch((err) => res.json(err));
   // },
+
+  deleteUser({ params }, res) {
+    User.findOneAndDelete({ _id: params.id })
+      .then((dbUserData) => res.json(dbUserData))
+      .catch((err) => res.json(err));
+  },
 
   // add a new friend to a user's friends list
   addFriend({ params }, res) {

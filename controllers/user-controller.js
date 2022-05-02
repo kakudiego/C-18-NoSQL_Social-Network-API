@@ -52,12 +52,26 @@ const UserController = {
       .catch((err) => res.json(err));
   },
 
-  // delete User
+  // delete User and all associated thoughts when user is deleted
   deleteUser({ params }, res) {
     User.findOneAndDelete({ _id: params.id })
-      .then((dbUserData) => res.json(dbUserData))
+      .then((dbUserData) => {
+        if (!dbUserData) {
+          res.status(404).json({ message: 'ERROR! try another userID!' });
+          return;
+        }
+        Thought.deleteMany({ userId: params.id })
+          .then(() => res.json(dbUserData))
+          .catch((err) => res.json(err));
+      })
       .catch((err) => res.json(err));
   },
+
+  // deleteUser({ params }, res) {
+  //   User.findOneAndDelete({ _id: params.id })
+  //     .then((dbUserData) => res.json(dbUserData))
+  //     .catch((err) => res.json(err));
+  // },
 
   // add a new friend to a user's friends list
   addFriend({ params }, res) {
